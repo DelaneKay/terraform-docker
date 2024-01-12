@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# Deploying NoteList React App on AWS with Terraform and Docker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This guide outlines the steps to deploy a NoteList React App on AWS using Terraform and Docker. The deployment involves creating infrastructure with Terraform, configuring an EC2 instance, and deploying the React App using Docker.
 
-## Available Scripts
+## Prerequisites
++ `Node.js` installed
++ `Docker` installed
++ `Terraform` installed
++ AWS account with appropriate permissions
 
-In the project directory, you can run:
+## Step 1: Clone Repository
+```js
+git clone <repository-url>
+cd <repository-directory>
+```
 
-### `npm start`
+## Step 2: Configure Terraform
+Create a file named `main.tf`. Refer to the provided Terraform script
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Step 3: Initialize Terraform
+Run the following commands to initialize Terraform:
+```js
+terraform init
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Step 4: Review and Apply Terraform Changes
+Review the Terraform scripts in the `terraform` directory and make any necessary adjustments. Then, apply the changes:
+```js
+terraform apply
+```
 
-### `npm test`
+## Step 5: Deploy React App with Docker
+After Terraform applies the changes, obtain the public IP address of the EC2 instance and SSH into it:
+```js
+ssh -i /path/to/your/private-key.pem ubuntu@<instance-public-ip>
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Step 6: Create Dockerfile
+Create a file named `Dockerfile`. Refer to the provided Terraform script
 
-### `npm run build`
+## Step 7: Build and Run Docker Container
+Run the following commands to build and run the Docker container:
+```js
+docker build -t notelist-app .
+docker run -p 80:80 -d notelist-app
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Step 8: Access the Deployed App
+Visit your AWS EC2 instance's public IP address in a web browser to access the deployed NoteList React app:
+```js
+http://<AWS_EC2_Public_IP>
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
